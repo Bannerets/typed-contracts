@@ -7,7 +7,7 @@ import { ObjectValidationError } from './ObjectValidationError';
 
 type ExtractReturnType = <T>(
   (valueName: string, value: mixed) => ValidationError | T,
-) => $Supertype<T>;
+) => T;
 
 export class MustBeExactError extends ValidationError {
   constructor(objectValueName: string, keyValueName: string, value: mixed) {
@@ -19,7 +19,7 @@ export class MustBeExactError extends ValidationError {
 }
 
 export const object = <
-  S: { [prop: string]: (valueName: string, value: mixed) => any },
+  S: { +[prop: string]: (valueName: string, value: mixed) => any },
 >(
   spec: S,
 ): contract.Contract<$ObjMap<S, ExtractReturnType>> =>

@@ -68,10 +68,10 @@ const {
 } = require('typed-contracts')
 
 type Person = {
-  name: string,
-  gender: 'm' | 'f',
-  friends: $ReadOnlyArray<Person>,
-  email?: string | $ReadOnlyArray<string>,
+  +name: string,
+  +gender: 'm' | 'f',
+  +friends: $ReadOnlyArray<Person>,
+  +email?: string | $ReadOnlyArray<string>,
 }
 
 // person returns Person-compatible value or ValidationError

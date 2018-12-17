@@ -7,10 +7,10 @@ import { object } from './object';
 
 type ExtractReturnType = <T>(
   (valueName: string, value: mixed) => ValidationError | void | T,
-) => $Supertype<T>;
+) => T;
 
 export const shape = <
-  S: { [prop: string]: (valueName: string, value: mixed) => any },
+  S: { +[prop: string]: (valueName: string, value: mixed) => any },
 >(
   spec: S,
 ): contract.Contract<$ObjMap<S, ExtractReturnType>> =>
